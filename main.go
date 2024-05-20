@@ -15,10 +15,13 @@ func main() {
 	// (1) FIM
 
 	// (2) Produção da Mensagem
-	topic := "test"
+	topic := "anthony"
 	msg := &kafka.Message{
-		Value:          []byte("hi"),
+		Value:          []byte("helloworld"),
 		Key:            []byte("1"),
+		Headers: []kafka.Header{
+			{Key: "regiao", Value: []byte("SC")},
+		},
 		TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 	}
 
