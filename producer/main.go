@@ -15,7 +15,7 @@ func main() {
 	// (1) FIM
 
 	// (2) Produção da Mensagem
-	topic := "anthony"
+	topic := "test"
 	msg := &kafka.Message{
 		Value:          []byte("helloworld"),
 		Key:            []byte("1"),
