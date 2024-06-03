@@ -54,14 +54,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8083/connectors/source-jdbc-postgres/status",
+					"raw": "localhost:8083/connectors/sink-camel-file/status",
 					"host": [
 						"localhost"
 					],
 					"port": "8083",
 					"path": [
 						"connectors",
-						"source-jdbc-postgres",
+						"sink-camel-file",
 						"status"
 					]
 				}
@@ -112,7 +112,7 @@
 			"response": []
 		},
 		{
-			"name": "Connectors",
+			"name": "ConnectorsSource",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -122,6 +122,36 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\": \"source-jdbc-postgres\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.confluent.connect.jdbc.JdbcSourceConnector\",\r\n        \"tasks.max\": \"1\",\r\n        \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n        \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        // \"topics\": \"sink-jdbc-postgres\",\r\n        \"connection.url\": \"jdbc:postgresql://db:5432/kafka\",\r\n        \"connection.user\": \"postgres\",\r\n        \"connection.password\": \"postgres\",\r\n        \"table.whitelist\": \"client\",\r\n        \"mode\": \"incrementing\",\r\n        \"incrementing.column.name\": \"id\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectorsSink",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"sink-camel-file\",\r\n    \"config\": {\r\n        \"connector.class\": \"org.apache.camel.kafkaconnector.file.CamelFileSinkConnector\",\r\n        \"tasks.max\": \"1\",\r\n        \"topics\": \"client\",\r\n        \"camel.sink.path.directoryName\": \"/data/output/\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
