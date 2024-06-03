@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "281274b0-8179-46d0-bb2e-a7adf8fdac25",
+		"name": "Kafka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24415316"
+	},
+	"item": [
+		{
+			"name": "InfoCluster",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083",
+					"host": [
+						"localhost"
+					],
+					"port": "8083"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connectors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectorsStatus",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors/source-jdbc-postgres/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"source-jdbc-postgres",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectorsDetails",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors/meu-conector-source",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"meu-conector-source"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectorPlugins",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connector-plugins",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connector-plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connectors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"source-jdbc-postgres\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.confluent.connect.jdbc.JdbcSourceConnector\",\r\n        \"tasks.max\": \"1\",\r\n        \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n        \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        // \"topics\": \"sink-jdbc-postgres\",\r\n        \"connection.url\": \"jdbc:postgresql://db:5432/kafka\",\r\n        \"connection.user\": \"postgres\",\r\n        \"connection.password\": \"postgres\",\r\n        \"table.whitelist\": \"client\",\r\n        \"mode\": \"incrementing\",\r\n        \"incrementing.column.name\": \"id\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/connectors",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteConnectors",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "GWftQJRQP90c4K35",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "connect",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/connectors/source-jdbc-postgres",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"source-jdbc-postgres"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
