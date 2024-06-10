@@ -121,3 +121,14 @@ services:
       - ksqldb-server
     entrypoint: /bin/sh
     tty: true
+
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest:7.5.3
+    depends_on:
+      - broker
+    ports:
+      - 8082:8082/tcp
+    environment:
+      KAFKA_REST_HOST_NAME: 'localhost'
+      KAFKA_REST_BOOTSTRAP_SERVERS: 'PLAINTEXT://broker:29092'
+      KAFKA_REST_LISTENERS: 'http://0.0.0.0:8082'
